@@ -1,17 +1,16 @@
 package homework;
 
-import java.util.AbstractMap;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class CustomerService {
 
-    TreeMap<Customer, String> customers = new TreeMap<>(new ScoresComparator());
+    private final NavigableMap<Customer, String> customers = new TreeMap<>(new ScoresComparator());
 
     public Map.Entry<Customer, String> getSmallest() {
         Map.Entry<Customer, String> entry = customers.firstEntry();
-        if (entry == null) return null;
+        if (entry == null) {
+            return null;
+        }
         Customer key = entry.getKey();
         Customer keyCopy = new Customer(key.getId(), key.getName(), key.getScores());
         return new AbstractMap.SimpleEntry<>(keyCopy, entry.getValue());
